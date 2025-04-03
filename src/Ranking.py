@@ -49,7 +49,7 @@ def Ranking(rounds):
         
         # Ordenar jugadores por puntos totales en orden decreciente
         jugadores_ordenados = sorted(jugadores.items(), key=lambda x: x[1]['total_points'], reverse=True)
-        print ("hola")
+
         if i == 4:
             print("Ranking final:")
         else:
