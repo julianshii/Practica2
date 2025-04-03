@@ -45,11 +45,18 @@ def Ranking(rounds):
     jugadores = inicializar_jugadores()
     for i, ronda in enumerate(rounds):
         jugadores = actualizar_jugadores(jugadores, ronda)
+        mvp_ronda = calcular_mvp(ronda)
+        
+        # Ordenar jugadores por puntos totales en orden decreciente
+        jugadores_ordenados = sorted(jugadores.items(), key=lambda x: x[1]['total_points'], reverse=True)
+
         if i == 4:
             print("Ranking final:")
-        else: print(f"\nResultados de la ronda {i + 1}:")
+        else:
+            print(f"\nResultados de la ronda {i + 1}:")
+        print(f"MVP de la ronda: {mvp_ronda}")
         print("Jugador      Kills      Asistencias      Muertes      MVPs      Puntos")
         print("------------------------------------------------------------------------------")
-        for jugador, stats in jugadores.items():
-            print(jugador,"      ",stats['kills'],"             ", stats['assists'],"          ", stats['deaths'],"          ", stats['mvp_count'],"         ", stats['total_points'])
+        for jugador, stats in jugadores_ordenados:
+            print(jugador, "      ", stats['kills'], "             ", stats['assists'], "          ", stats['deaths'], "          ", stats['mvp_count'], "         ", stats['total_points'])
         print("------------------------------------------------------------------------------")
